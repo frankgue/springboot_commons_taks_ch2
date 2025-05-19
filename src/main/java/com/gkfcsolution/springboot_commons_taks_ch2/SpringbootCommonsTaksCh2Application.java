@@ -2,6 +2,9 @@ package com.gkfcsolution.springboot_commons_taks_ch2;
 
 import com.gkfcsolution.springboot_commons_taks_ch2.config.AppProperties;
 import com.gkfcsolution.springboot_commons_taks_ch2.config.DbConfiguration;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -12,17 +15,17 @@ import java.util.Properties;
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class SpringbootCommonsTaksCh2Application {
+public class SpringbootCommonsTaksCh2Application implements CommandLineRunner {
 
+	protected final Log logger = LogFactory.getLog(getClass());
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringbootCommonsTaksCh2Application.class, args);
-		AppService appService = applicationContext.getBean(AppService.class);
-		System.out.println(appService.getAppProperties());
-		/*Environment env = applicationContext.getBean(Environment.class);
-		System.out.println("Database \n Username: " + env.getProperty("spring.datasource.username"));
-		System.out.println("Database \n Password: " + env.getProperty("spring.datasource.password"));*/
+		SpringApplication.run(SpringbootCommonsTaksCh2Application.class, args);
 
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		logger.info("CourseTrackerApplication CommandLineRunner has executed");
+	}
 }
