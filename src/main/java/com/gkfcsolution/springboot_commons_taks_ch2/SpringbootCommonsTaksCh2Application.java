@@ -1,29 +1,28 @@
 package com.gkfcsolution.springboot_commons_taks_ch2;
 
+import com.gkfcsolution.springboot_commons_taks_ch2.config.AppProperties;
 import com.gkfcsolution.springboot_commons_taks_ch2.config.DbConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 
 import java.util.Properties;
 
 @SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
 public class SpringbootCommonsTaksCh2Application {
 
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringbootCommonsTaksCh2Application.class, args);
-		DbConfiguration dbConfiguration = applicationContext.getBean(DbConfiguration.class);
-		System.out.println(dbConfiguration);
+		AppService appService = applicationContext.getBean(AppService.class);
+		System.out.println(appService.getAppProperties());
+		/*Environment env = applicationContext.getBean(Environment.class);
+		System.out.println("Database \n Username: " + env.getProperty("spring.datasource.username"));
+		System.out.println("Database \n Password: " + env.getProperty("spring.datasource.password"));*/
 
-		/*Properties properties = new Properties();
-		properties.setProperty("spring.config.on-not-found", "ignore");
-
-		SpringApplication application = new SpringApplication(SpringbootCommonsTaksCh2Application.class);
-		application.setDefaultProperties(properties);
-		application.run(args);*/
-
-//		SpringApplication.run(SpringbootCommonsTaksCh2Application.class, args);
 	}
 
 }
