@@ -1,15 +1,24 @@
 package com.gkfcsolution.springboot_commons_taks_ch2.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
+@Entity
+@Table(name = "COURSES")
 public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "CATEGORY")
     private String category;
-@Min(value = 1, message = "A course should have a minimum of 1 rating")
-@Max(value = 5, message = "A course should have a maximum of 5 rating")
+    @Min(value = 1, message = "A course should have a minimum of 1 rating")
+    @Max(value = 5, message = "A course should have a maximum of 5 rating")
+    @Column(name = "RATING")
     private int rating;
+    @Column(name = "DESCRIPTION")
     private String description;
 
     public Course() {
