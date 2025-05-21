@@ -2,6 +2,12 @@ package com.gkfcsolution.springboot_commons_taks_ch2;
 
 import com.gkfcsolution.springboot_commons_taks_ch2.model.Course;
 import com.gkfcsolution.springboot_commons_taks_ch2.repository.CourseRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,6 +21,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CrudCustomResquestTest {
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    @Test
+    public void givenCoursesCreatedWhenLoadCoursesWithQueryThenExpectCorrectCourseDetails(){
+        courseRepository.saveAll(getCourseList());
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+            CriteriaQuery<Course> courseCriteriaQuery = criteriaBuilder.createQuery(Course.class);
+
+        Root<Course> courseRoot = courseCriteriaQuery.from(Course.class);
+
+        Predicate courseCategoryPredicate = criteriaBuilder.equal(courseRoot.get("category"), "Spring");
+
+        courseCriteriaQuery.where(courseCategoryPredicate);
+
+        TypedQuery<Course> query = entityManager.createQuery(courseCriteriaQuery);
+
+        assertThat(query.getResultList().size()).isEqualTo(3);
+    }
 
     @Test
     public void givenCreateCourseWhenLoadTheCourseThenExpectSameCourse(){

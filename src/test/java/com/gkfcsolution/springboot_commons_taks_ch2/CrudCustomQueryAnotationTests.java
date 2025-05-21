@@ -2,6 +2,7 @@ package com.gkfcsolution.springboot_commons_taks_ch2;
 
 import com.gkfcsolution.springboot_commons_taks_ch2.model.Course;
 import com.gkfcsolution.springboot_commons_taks_ch2.repository.CourseRepository;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
