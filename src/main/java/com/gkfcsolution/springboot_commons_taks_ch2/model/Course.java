@@ -24,6 +24,13 @@ public class Course {
     public Course() {
     }
 
+    public Course(String name, String category, int rating, String description) {
+        this.name = name;
+        this.category = category;
+        this.rating = rating;
+        this.description = description;
+    }
+
     public Course(long id, String name, String category, int rating, String description) {
         this.id = id;
         this.name = name;
