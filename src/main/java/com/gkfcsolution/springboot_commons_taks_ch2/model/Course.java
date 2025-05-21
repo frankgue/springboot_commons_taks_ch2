@@ -7,10 +7,10 @@ import jakarta.validation.constraints.Min;
 @Entity
 @Table(name = "COURSES")
 //The @NamedQuery annotation lets you specify the query for the repository method in JPQL format
-@NamedQueries({
+/*@NamedQueries({
         @NamedQuery(name = "Course.findAllByRating", query = "select c from Course c where c.rating=?1"),
         @NamedQuery(name = "Course.findAllByCategoryAndRating", query = "SELECT c from Course c where c.category=?1 and c.rating=?2")
-})
+})*/
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
