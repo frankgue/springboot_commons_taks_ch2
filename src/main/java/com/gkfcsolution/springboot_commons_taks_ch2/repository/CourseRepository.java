@@ -32,4 +32,10 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
     //    Finds all courses by category and returns a Java 8 Stream
     Stream<Course> streamAllByCategory(String category);
 
+    /**
+     * Named Query
+     */
+    Iterable<Course> findAllByCategoryAndRating(String category, int rating);
+    Iterable<Course> findAllByRating(int rating);
+
 }

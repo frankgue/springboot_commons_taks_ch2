@@ -27,6 +27,12 @@ public class CrudCustomResquestTest {
         assertThat(courseRepository.findByNameContains("Rapid")).hasSize(1);
     }
 
+    @Test
+    public void givenCoursesCreatedWhenLoadCoursesBySpringCategoryThenExpectThreeCourses(){
+        courseRepository.saveAll(getCourseList());
+        assertThat(courseRepository.findAllByCategoryAndRating("Spring", 4)).hasSize(1);
+    }
+
     private List<Course> getCourseList() {
         Course rapidSpringBootCourse = new Course("Rapid Spring Boot Application Development", "Spring", 4, "Spring Boot gives all the power of the Spring Framework without all of the complexity");
         Course springSecurityDslCourse = new Course("Getting Started with Spring Security DSL", "Spring", 5, "Learn Spring Security DSL in easy steps");
