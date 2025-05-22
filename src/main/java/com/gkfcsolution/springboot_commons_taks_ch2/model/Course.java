@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Min;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "")
+@Entity(name = "COURSE")
 @Table(name = "COURSES")
 public class Course {
     @Id
