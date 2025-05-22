@@ -1,5 +1,6 @@
 package com.gkfcsolution.springboot_commons_taks_ch2.repository;
 
+import com.gkfcsolution.springboot_commons_taks_ch2.dto.CourseDto;
 import com.gkfcsolution.springboot_commons_taks_ch2.model.Course;
 import com.gkfcsolution.springboot_commons_taks_ch2.projection.DescriptionOnly;
 import org.springframework.data.jpa.repository.Modifying;

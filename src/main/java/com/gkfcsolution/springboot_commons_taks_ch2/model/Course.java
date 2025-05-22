@@ -1,5 +1,6 @@
 package com.gkfcsolution.springboot_commons_taks_ch2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -26,6 +27,7 @@ public class Course {
 
     //    # The mappedBy attribute of @ManyToMany annotation in the non-owning side of the relationship
     @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private Set<Author> authors = new HashSet<>();
     public Course() {
     }

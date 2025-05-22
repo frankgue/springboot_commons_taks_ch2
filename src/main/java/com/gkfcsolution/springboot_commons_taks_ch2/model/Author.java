@@ -1,5 +1,6 @@
 package com.gkfcsolution.springboot_commons_taks_ch2.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class Author {
     @JoinTable(name = "AUTHORS_COURSES",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @JsonManagedReference
     private Set<Course> courses = new HashSet<>();
 
     public Author() {
