@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
-@Entity
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity(name = "")
 @Table(name = "COURSES")
 public class Course {
     @Id
@@ -21,6 +24,9 @@ public class Course {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    //    # The mappedBy attribute of @ManyToMany annotation in the non-owning side of the relationship
+    @ManyToMany(mappedBy = "courses")
+    private Set<Author> authors = new HashSet<>();
     public Course() {
     }
 
@@ -77,5 +83,13 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 }

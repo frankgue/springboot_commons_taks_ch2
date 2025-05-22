@@ -1,6 +1,7 @@
 package com.gkfcsolution.springboot_commons_taks_ch2.repository;
 
 import com.gkfcsolution.springboot_commons_taks_ch2.model.Course;
+import com.gkfcsolution.springboot_commons_taks_ch2.projection.DescriptionOnly;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -12,12 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.stream.Stream;
 
 @Repository
-public interface CourseRepository extends CrudRepository<Course, Long>, QuerydslPredicateExecutor<Course> {
+public interface CourseRepository extends CrudRepository<Course, Long> {
+    Iterable<DescriptionOnly> getCourseByName(String name);
     //     Finds all courses by category. A find query returns an Iterable type
         /*The repository method that finds all the courses belongs to the supplied category.
     The @Query annotation lets you specify the JPQL Query. You have used a positional
     argument with ?1 which is replaced by the supplied category in this example*/
-    @Query("select c from Course c where c.category=?1")
+    @Query("select c from Courses c where c.category=?1")
     Iterable<Course> findAllByCategory(String category);
 
     /*
@@ -71,7 +73,7 @@ are replaced by the supplied category and rating values in this example.
      */
     @Modifying
     @Transactional
-    @Query("update Course c set c.rating = :rating where c.name = :name")
+    @Query("update COURSES c set c.rating = :rating where c.name = :name")
     int updateCourseRatingByName(@Param("rating") int rating, @Param("name") String name);
 
 }
